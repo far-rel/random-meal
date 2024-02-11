@@ -12,8 +12,17 @@
   </head>
 
   <body>
-    <main class="container mx-auto">
+    <nav class="bg-white">
+      <%= link_to root_path, class: "inline-block m-2" do %>
+        <%= image_tag "logo.svg" %>
+      <% end %>
+    </nav>
+    <div class="bg-cover w-full h-[33vh] bg-teal-700" style="background-image: url(<%= image_url("background.jpeg") %>)"></div>
+    <main class="container mx-auto py-8">
       <%= yield %>
     </main>
+    <footer class="bg-teal-700 text-white text-center text-sm py-2">
+      Powered by <a href="https://www.themealdb.com/api.php" class="underline" target="_blank">TheMealDB</a>
+    </footer>
   </body>
 </html>
