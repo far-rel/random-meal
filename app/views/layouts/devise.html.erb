@@ -11,11 +11,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body style="background-image: url(<%= image_url("background.jpeg") %>)" class="bg-cover">
     <%= render "layouts/header" %>
-    <div class="bg-cover w-full h-[33vh]" style="background-image: url(<%= image_url("background.jpeg") %>)"></div>
-    <main class="container mx-auto py-8">
-      <%= yield %>
+    <main class="container mx-auto flex-1 flex items-center justify-center" style="max-width: 400px">
+      <div class="my-8 py-8 px-4 bg-white border rounded w-full">
+        <%= yield %>
+      </div>
     </main>
     <%= render "layouts/footer" %>
   </body>

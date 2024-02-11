@@ -1,0 +1,36 @@
+<h2 class="text-center text-2xl">Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "devise/shared/inline_errors", resource: resource, field: :base %>
+  <% if flash[:alert] %>
+    <div class="text-red-500 italic text-sm my-4">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <div class="field my-4">
+    <%= f.label :email, class: "text-sm" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded w-full px-2 py-1" %>
+    <%= render "devise/shared/inline_errors", resource: resource, field: :email %>
+  </div>
+
+  <div class="field my-4">
+    <%= f.label :password, class: "text-sm" %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class: "rounded w-full px-2 py-1" %>
+    <%= render "devise/shared/inline_errors", resource: resource, field: :password %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field my-4">
+      <%= f.check_box :remember_me, class: "rounded" %>
+      <%= f.label :remember_me, class: "text-sm" %>
+    </div>
+  <% end %>
+
+  <div class="actions my-4">
+    <%= f.submit "Log in", class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded inline-block w-full" %>
+  </div>
+<% end %>
+
+<div class="my-4">
+  <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,5 @@
+<% unless resource.errors.full_messages_for(field).empty? %>
+  <% resource.errors.full_messages_for(field).each do |error| %>
+    <p class="text-red-500 text-xs italic"><%= error %></p>
+  <% end %>
+<% end %>

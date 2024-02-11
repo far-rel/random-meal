@@ -72,3 +72,5 @@ gem "net-http"
 
 gem "dry-struct", "~> 1.6"
 gem "standard", require: false
+
+gem "devise", "~> 4.9"
