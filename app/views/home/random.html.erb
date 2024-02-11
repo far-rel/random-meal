@@ -1,0 +1,9 @@
+<h1><%= @meal.name %></h1>
+<h2><%= @meal.category %></h2>
+<p>
+  <%= @meal.instructions %>
+</p>
+<%= image_tag @meal.thumbnail, class: "w-40 h40" %>
+<% @meal.ingredients.each do |ingredient| %>
+  <p><%= ingredient.ingredient %>: <%= ingredient.measure %></p>
+<% end %>
