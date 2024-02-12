@@ -1,0 +1,35 @@
+<div class="flex my-4 flex-col md:flex-row">
+  <div class="flex-1">
+    <h1 class="text-teal-700 text-4xl font-bold my-2 px-2"><%= meal.name %></h1>
+    <h2 class="italic text-2xl my-2 px-2"><%= meal.category %></h2>
+  </div>
+  <div class="flex-1 px-2 md:text-right">
+    <% if current_user %>
+      <% if is_meal_favorite %>
+        <%= link_to "Unfavorite the meal", unfavorite_meal_path(meal.id), data: {turbo_method: :delete, test_id: "unfavorite-meal"}, class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded inline-block" %>
+      <% else %>
+        <%= link_to "Favorite the meal", favorite_meal_path(meal.id), data: {turbo_method: :post, test_id: "favorite-meal"}, class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded inline-block" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="flex my-4 flex-col md:flex-row">
+  <div class="flex-1 p-2">
+    <% meal.ingredients.each do |ingredient| %>
+      <dl class="border-b border-dotted py-2 flex">
+        <dt class="inline-block flex-1"><%= ingredient.ingredient %></dt>
+        <dd class="inline-block"><%= ingredient.measure %></dd>
+      </dl>
+    <% end %>
+  </div>
+  <div class="flex-1 p-2 text-right">
+    <%= image_tag meal.thumbnail, class: "rounded inline-block" %>
+  </div>
+</div>
+<div class="italic my-2 px-2">
+  Instructions:
+</div>
+<div class="my-2 px-2">
+  <%= simple_format(meal.instructions) %>
+</div>

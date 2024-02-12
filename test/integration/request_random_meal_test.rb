@@ -4,11 +4,22 @@ class RequestRandomMealTest < ActionDispatch::IntegrationTest
   def test_request_random_meal
     stub_request(:get, "https://www.themealdb.com/api/json/v1/1/random.php")
       .to_return(body: api_response.to_json)
+    stub_request(:get, "https://www.themealdb.com/api/json/v1/1/lookup.php?i=12345")
+      .to_return(body: api_response.to_json)
 
-    get "/random"
+    get "/meals/random"
 
+    follow_redirect!
     assert_response :success
     assert_select "h1", "Test Meal"
+  end
+
+  def request_nonexistent_meal
+    stub_request(:get, "https://www.themealdb.com/api/json/v1/1/random.php")
+      .to_return(body: nil)
+
+    get "/meals/random"
+    assert_response :not_found
   end
 
   private

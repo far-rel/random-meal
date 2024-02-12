@@ -15,6 +15,11 @@
     <%= render "layouts/header" %>
     <div class="bg-cover w-full h-[33vh]" style="background-image: url(<%= image_url("background.jpeg") %>)"></div>
     <main class="container mx-auto py-8">
+      <% if flash[:alert] %>
+        <div class="text-red-500 italic text-sm my-4" data-test-id="flash-alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>

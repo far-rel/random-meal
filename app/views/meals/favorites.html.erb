@@ -1,0 +1,14 @@
+<h1 class="text-teal-700 text-4xl font-bold my-2 px-2">Your favorite meals</h1>
+<% @favorite_meals.each do |favorite_meal| %>
+  <div class="border-b border-dotted py-2 flex">
+    <div class="flex-1">
+      <%= favorite_meal.name %>
+    </div>
+    <div class="mx-4">
+      <%= link_to "View", meal_path(favorite_meal.meal_id), class: "underline" %>
+    </div>
+    <div class="mx-4">
+      <%= link_to "Unfavorite", unfavorite_meal_path(favorite_meal.meal_id), data: {turbo_method: :delete}, class: "underline" %>
+    </div>
+  </div>
+<% end %>

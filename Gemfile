@@ -74,3 +74,5 @@ gem "dry-struct", "~> 1.6"
 gem "standard", require: false
 
 gem "devise", "~> 4.9"
+
+gem "dry-monads", "~> 1.6"

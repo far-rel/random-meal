@@ -8,5 +8,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
-  get "random" => "home#random", :as => :random_meal
+
+  resources :meals, only: [:show] do
+    member do
+      post :favorite
+      delete :unfavorite
+    end
+    collection do
+      get :random
+      get :favorites
+    end
+  end
 end

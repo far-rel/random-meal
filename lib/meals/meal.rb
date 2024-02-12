@@ -1,4 +1,4 @@
-module TheMealDB
+module Meals
   class Meal < Dry::Struct
     attribute :id, Types::Coercible::Integer
     attribute :name, Types::String

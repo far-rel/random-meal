@@ -2,7 +2,7 @@ require "test_helper"
 
 class MealTest < ActiveSupport::TestCase
   def test_meal_from_api_response_creates_correct_meal
-    meal = TheMealDB::Meal.from_api_response(api_response)
+    meal = Meals::Meal.from_api_response(api_response)
 
     assert_equal 12345, meal.id
     assert_equal "Test Meal", meal.name
@@ -16,7 +16,7 @@ class MealTest < ActiveSupport::TestCase
   def test_meal_from_api_response_handles_missing_ingredients
     response = api_response.except("strIngredient1")
 
-    meal = TheMealDB::Meal.from_api_response(response)
+    meal = Meals::Meal.from_api_response(response)
 
     assert_empty meal.ingredients
   end

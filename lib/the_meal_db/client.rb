@@ -5,9 +5,12 @@ module TheMealDB
     class << self
       def random_meal
         response = request("random.php")
-        meal = response["meals"].first
-        return nil if meal.nil?
-        Meal.from_api_response(meal)
+        response["meals"]&.first
+      end
+
+      def meal(id)
+        response = request("lookup.php?i=#{id}")
+        response["meals"]&.first
       end
 
       private
