@@ -7,7 +7,9 @@
   <div class="flex-1 text-right">
     <% if current_user %>
       <%= link_to "Favorite meals", favorites_meals_path, class: "inline-block m-2" %>
+      <%= link_to "Edit profile", edit_user_registration_path, class: "inline-block m-2" %>
       <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "inline-block m-2" %>
+      <%= image_tag current_user.avatar.url(:thumb), class: "rounded-full max-w-[50px] max-h-[50px] inline-block" %>
     <% else %>
       <%= link_to "Sign in", new_user_session_path, class: "inline-block m-2" %>
       <%= link_to "Sign up", new_user_registration_path, class: "inline-block m-2" %>
