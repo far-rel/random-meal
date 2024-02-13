@@ -78,3 +78,6 @@ gem "devise", "~> 4.9"
 gem "dry-monads", "~> 1.6"
 
 gem "carrierwave", "~> 3.0"
+
+gem "dry-container", "~> 0.11.0"
+gem "dry-auto_inject", "~> 1.0"

@@ -119,6 +119,11 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.0)
       ruby2_keywords
+    dry-auto_inject (1.0.1)
+      dry-core (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-container (0.11.0)
+      concurrent-ruby (~> 1.0)
     dry-core (1.0.1)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
@@ -359,6 +364,8 @@ DEPENDENCIES
   carrierwave (~> 3.0)
   debug
   devise (~> 4.9)
+  dry-auto_inject (~> 1.0)
+  dry-container (~> 0.11.0)
   dry-monads (~> 1.6)
   dry-struct (~> 1.6)
   importmap-rails

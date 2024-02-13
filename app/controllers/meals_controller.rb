@@ -6,19 +6,19 @@ class MealsController < ApplicationController
   end
 
   def random
-    ::Meals::Api.random_meal.either(
+    meals_api.random_meal.either(
       ->(meal) { redirect_to meal_path(meal.id) },
       method(:handle_failure)
     )
   end
 
   def show
-    ::Meals::Api.meal(params[:id]).either(
+    meals_api.meal(params[:id]).either(
       ->(meal) {
         @meal = meal
 
         if current_user
-          @is_meal_favorite = ::Meals::Api.is_meal_favorite?(current_user.id, @meal.id)
+          @is_meal_favorite = meals_api.is_meal_favorite?(current_user.id, @meal.id)
         end
       },
       method(:handle_failure)
@@ -26,21 +26,21 @@ class MealsController < ApplicationController
   end
 
   def favorite
-    ::Meals::Api.favorite_meal(current_user.id, params[:id]).either(
+    meals_api.favorite_meal(current_user.id, params[:id]).either(
       ->(_) { redirect_to meal_path(params[:id]) },
       method(:handle_failure)
     )
   end
 
   def unfavorite
-    ::Meals::Api.unfavorite_meal(current_user.id, params[:id]).either(
-      ->(_) { redirect_back(fallback_location: root_path) },
+    meals_api.unfavorite_meal(current_user.id, params[:id]).either(
+      ->(_) { redirect_back(fallback_location: meal_path(params[:id])) },
       method(:handle_failure)
     )
   end
 
   def favorites
-    ::Meals::Api.favorite_meals(current_user.id).either(
+    meals_api.favorite_meals(current_user.id).either(
       ->(favorite_meals) { @favorite_meals = favorite_meals },
       method(:handle_failure)
     )
@@ -59,5 +59,9 @@ class MealsController < ApplicationController
     }
 
     failures.fetch(failure[:code], default_failure).call(failure)
+  end
+
+  def meals_api
+    @meals_api ||= Meals::Api.new
   end
 end
