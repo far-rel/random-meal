@@ -2,21 +2,21 @@ module Meals
   class Api
     include Dry::Monads[:result]
     include Dry::Monads::Do::All
-    include AutoInject[:external_meals_storage]
+    include AutoInject[:external_meals_storage, :build_meal_attributes]
 
     def random_meal
       random_meal = external_meals_storage.random_meal
 
       return failure(:not_found, "Could not find random meal") if random_meal.nil?
 
-      Success(Meal.from_api_response(random_meal))
+      Success(create_meal(random_meal))
     end
 
     def meal(meal_id)
       meal = external_meals_storage.meal(meal_id)
       return failure(:not_found, "Could not find meal with id #{meal_id}") if meal.nil?
 
-      Success(Meal.from_api_response(meal))
+      Success(create_meal(meal))
     end
 
     def favorite_meal(user_id, meal_id)
@@ -54,6 +54,10 @@ module Meals
     end
 
     private
+
+    def create_meal(response)
+      Meal.new(build_meal_attributes.call(response))
+    end
 
     def failure(code, additional_info)
       Failure({code: code, additional_info: additional_info})
