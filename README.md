@@ -29,6 +29,7 @@ Authenticated user can also add a meal to the list of favorite meals and browse 
 * TailwindCSS is used for styling
 * dry-struct and dry-types to create a simple structure for the meal data
 * dry-container and dry-auto_inject to create a simple dependency injection container
+* dry-monads to handle the results from the Meals modules
 
 ## Disclaimer
 
