@@ -5,7 +5,7 @@
   </div>
   <div class="flex-1 px-2 md:text-right">
     <% if current_user %>
-      <% if is_meal_favorite %>
+      <% if favorite_meal %>
         <%= link_to "Unfavorite the meal", unfavorite_meal_path(meal.id), data: {turbo_method: :delete, test_id: "unfavorite-meal"}, class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded inline-block" %>
       <% else %>
         <%= link_to "Favorite the meal", favorite_meal_path(meal.id), data: {turbo_method: :post, test_id: "favorite-meal"}, class: "bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded inline-block" %>

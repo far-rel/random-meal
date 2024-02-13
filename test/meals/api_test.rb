@@ -107,17 +107,17 @@ class ApiTest < ActiveSupport::TestCase
     assert_equal @meal_id, result.value![0].meal_id
   end
 
-  def test_is_meal_favorite_returns_true_when_favorite
+  def test_favorite_meal_returns_true_when_favorite
     user = users(:test)
     Meals::FavoriteMeal.create(meal_id: @meal_id, user_id: user.id, name: @meal_name)
 
-    assert @meals_api.is_meal_favorite?(user.id, @meal_id)
+    assert @meals_api.favorite_meal?(user.id, @meal_id)
   end
 
-  def test_is_meal_favorite_returns_false_when_not_favorite
+  def test_favorite_meal_returns_false_when_not_favorite
     user = users(:test)
 
-    assert_not @meals_api.is_meal_favorite?(user.id, @meal_id)
+    assert_not @meals_api.favorite_meal?(user.id, @meal_id)
   end
 
   private

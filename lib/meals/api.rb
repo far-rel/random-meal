@@ -22,7 +22,7 @@ module Meals
     def favorite_meal(user_id, meal_id)
       meal = yield meal(meal_id)
 
-      return failure(:already_favorite, "Meal is already favorite") if is_meal_favorite?(user_id, meal_id)
+      return failure(:already_favorite, "Meal is already favorite") if favorite_meal?(user_id, meal_id)
 
       favorite_meal = FavoriteMeal.new(user_id: user_id, meal_id: meal.id, name: meal.name)
 
@@ -49,7 +49,7 @@ module Meals
       Success(FavoriteMeal.where(user_id: user_id).order(created_at: :desc))
     end
 
-    def is_meal_favorite?(user_id, meal_id)
+    def favorite_meal?(user_id, meal_id)
       FavoriteMeal.where(user_id: user_id, meal_id: meal_id).exists?
     end
 

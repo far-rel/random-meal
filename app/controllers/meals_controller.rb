@@ -18,7 +18,7 @@ class MealsController < ApplicationController
         @meal = meal
 
         if current_user
-          @is_meal_favorite = meals_api.is_meal_favorite?(current_user.id, @meal.id)
+          @favorite_meal = meals_api.favorite_meal?(current_user.id, @meal.id)
         end
       },
       method(:handle_failure)
