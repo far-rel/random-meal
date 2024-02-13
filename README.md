@@ -31,6 +31,15 @@ Authenticated user can also add a meal to the list of favorite meals and browse 
 * dry-container and dry-auto_inject to create a simple dependency injection container
 * dry-monads to handle the results from the Meals modules
 
+## Possible improvements
+
+* More test coverage - I decided against covering the sign in and sign up functionality as it is provided by Devise and 
+it is well tested, but as important as it is, it might be covered by tests
+* Dependency between `Meals` and `TheMealDB` - `TheMealDB` has to be aware of the `Meals::Meal` structure to translate
+the data from the API to the `Meals::Meal` attributes. It does not create those objects directly, but it still has to
+know about the structure. Maybe it would be better to have a separate module that would be responsible for translating
+the data from the API to the `Meals::Meal` structure.
+
 ## Disclaimer
 
 Some images were generated using AI service (logo, splash background, default user image)
