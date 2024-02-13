@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Ruby on Rails application to randomly select a meal from a list of meals.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Ruby 3.2.2
+* ImageMagick
+* Sqlite3
+* Foreman gem
 
-* System dependencies
+## Start up
 
-* Configuration
+```bash
+./bin/rails db:create
+./bin/rails db:migrate
+./bin/dev
+```
 
-* Database creation
+## Description
 
-* Database initialization
+This application users TheMealDB API to fetch a random meal and display it to the user. 
+Authenticated user can also add a meal to the list of favorite meals and browse the list of favorite meals.
 
-* How to run the test suite
+## Used technologies
 
-* Services (job queues, cache servers, search engines, etc.)
+* Devise is used for user authentication 
+* CarrierWave is used for image upload
+* TailwindCSS is used for styling
+* dry-struct and dry-types to create a simple structure for the meal data
+* dry-container and dry-auto_inject to create a simple dependency injection container
 
-* Deployment instructions
+## Disclaimer
 
-* ...
+Some images were generated using AI service (logo, splash background, default user image)
