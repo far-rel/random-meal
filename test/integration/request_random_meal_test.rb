@@ -1,17 +1,21 @@
 require "test_helper"
 
 class RequestRandomMealTest < ActionDispatch::IntegrationTest
+  def setup
+    @meal_id = 12345
+    @meal_name = "Test Meal"
+  end
   def test_request_random_meal
     stub_request(:get, "https://www.themealdb.com/api/json/v1/1/random.php")
       .to_return(body: api_response.to_json)
-    stub_request(:get, "https://www.themealdb.com/api/json/v1/1/lookup.php?i=12345")
+    stub_request(:get, "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{@meal_id}")
       .to_return(body: api_response.to_json)
 
     get "/meals/random"
 
     follow_redirect!
     assert_response :success
-    assert_select "h1", "Test Meal"
+    assert_select "h1", @meal_name
   end
 
   def request_nonexistent_meal
@@ -28,8 +32,8 @@ class RequestRandomMealTest < ActionDispatch::IntegrationTest
     {
       meals: [
         {
-          idMeal: "12345",
-          strMeal: "Test Meal",
+          idMeal: @meal_id,
+          strMeal: @meal_name,
           strMealThumb: "https://www.themealdb.com/images/media/meals/abc123.jpg",
           strCategory: "Test Category",
           strInstructions: "Test Instructions",
